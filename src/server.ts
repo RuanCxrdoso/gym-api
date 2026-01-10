@@ -1,6 +1,10 @@
-import { app } from "./app.js";
+import 'dotenv/config'
+import { app } from './app.js'
+import { env } from './env/index.js'
 
-app.listen({
-  host: '0.0.0.0',
-  port: 3333
-}).then(() => console.log('HTTP Server is Running 🚀'))
+app
+  .listen({
+    host: '0.0.0.0',
+    port: env.PORT,
+  })
+  .then(() => console.log('HTTP Server is Running 🚀'))

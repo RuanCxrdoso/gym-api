@@ -30,24 +30,24 @@ GymPass style app.
 - [ ] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL;
 - [ ] Todas listas de dados precisam estar paginadas com 20 itens por página;
 - [ ] O usuário deve ser identificado por um JWT (JSON Web Token);
- 
+
 ## Permissões de Acesso (RBAC)
 
 A seguir, a matriz de permissões definindo quais ações cada nível de cargo pode realizar dentro da plataforma, baseada nas regras de negócio definidas.
 
-| Funcionalidade / Ação | Master | Admin | User |
-| :--- | :---: | :---: | :---: |
-| **Autenticação e Perfil** | | | |
-| Auto-cadastro na plataforma | ❌ | ❌ | ✅ |
-| Realizar login | ✅ | ✅ | ✅ |
-| Visualizar o próprio perfil | ✅ | ✅ | ✅ |
-| **Funcionalidades do Usuário** | | | |
-| Buscar academias (próximas ou por nome) | ✅ | ✅ | ✅ |
-| Realizar check-in em uma academia | ✅ | ✅ | ✅ |
-| Visualizar próprio histórico/contador de check-ins | ✅ | ✅ | ✅ |
-| **Funcionalidades Administrativas** | | | |
-| Validar check-in de outros usuários | ✅ | ✅ | ❌ |
-| Cadastrar uma nova academia | ✅ | ✅ | ❌ |
+| Funcionalidade / Ação                              | Master | Admin | User |
+| :------------------------------------------------- | :----: | :---: | :--: |
+| **Autenticação e Perfil**                          |        |       |      |
+| Auto-cadastro na plataforma                        |   ❌   |  ❌   |  ✅  |
+| Realizar login                                     |   ✅   |  ✅   |  ✅  |
+| Visualizar o próprio perfil                        |   ✅   |  ✅   |  ✅  |
+| **Funcionalidades do Usuário**                     |        |       |      |
+| Buscar academias (próximas ou por nome)            |   ✅   |  ✅   |  ✅  |
+| Realizar check-in em uma academia                  |   ✅   |  ✅   |  ✅  |
+| Visualizar próprio histórico/contador de check-ins |   ✅   |  ✅   |  ✅  |
+| **Funcionalidades Administrativas**                |        |       |      |
+| Validar check-in de outros usuários                |   ✅   |  ✅   |  ❌  |
+| Cadastrar uma nova academia                        |   ✅   |  ✅   |  ❌  |
 
 > **Legenda:**
 > ✅ = Permitido
