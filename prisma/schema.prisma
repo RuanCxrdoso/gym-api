@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Models são as tabelas do db, por padrão é digitado em CamelCase e no singular, usamos o @@(map) para redefinir esse nome.
+model User {
+  id    String @id @default(uuid())
+  name  String
+  email String @unique
+
+  @@map("users")
+}

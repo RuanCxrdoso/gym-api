@@ -30,3 +30,5 @@ Thumbs.db
 
 # Arquivos de Teste (se gerados automaticamente)
 coverage/
+
+/generated/prisma
