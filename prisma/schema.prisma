@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Models são as tabelas do db, por padrão é digitado em PascalCase e no singular, usamos o @@(map) para redefinir esse nome.
+model User {
+  id           String    @id @default(uuid())
+  name         String
+  email        String    @unique
+  checkIns     CheckIn[]
+  passwordHash String    @map("password_hash")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  @@map("users")
+}
+
+model CheckIn {
+  id          String    @id @default(uuid())
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String    @map("user_id")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  validatedAt DateTime? @map("validated_at")
+  gym         Gym       @relation(fields: [gymId], references: [id])
+  gymId       String    @map("gym_id")
+
+  @@map("check_ins")
+}
+
+model Gym {
+  id          String    @id @default(uuid())
+  title       String
+  description String?
+  phone       String?
+  lat         Decimal
+  long        Decimal
+  checkIns    CheckIn[]
+
+  @@map("gyms")
+}
