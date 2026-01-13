@@ -1,0 +1,10 @@
+services:
+  gym-api-pg:
+    image: bitnami/postgresql:latest
+    container_name: gym-api-pg
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=gympassapi
