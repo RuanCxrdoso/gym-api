@@ -6,6 +6,9 @@ import { env } from '@/env/index.js'
 const connectionString = env.DATABASE_URL
 
 const adapter = new PrismaPg({ connectionString })
-const prisma = new PrismaClient({ adapter })
+const prisma = new PrismaClient({
+  adapter,
+  log: env.NODE_ENV === 'development' ? ['query'] : [],
+})
 
 export { prisma }
