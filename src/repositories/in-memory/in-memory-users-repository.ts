@@ -1,8 +1,8 @@
 import type { UserCreateInput } from 'generated/prisma/models.js'
-import type { UsersRepositoryInterface } from '../users-repository.js'
+import type { UsersRepository } from '../users-repository.js'
 import type { User } from 'generated/prisma/client.js'
 
-export class InMemoryUsersRepository implements UsersRepositoryInterface {
+export class InMemoryUsersRepository implements UsersRepository {
   public users: User[] = []
 
   async findUniqueEmail(email: string) {
