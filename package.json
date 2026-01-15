@@ -12,7 +12,7 @@
     "start:dev": "tsx src/server.ts --watch",
     "lint:check": "prettier . --check",
     "lint:fix": "prettier . --write",
-    "build": "tsup src --out-dir build",
+    "build": "tsup src --out-dir build --format esm",
     "prisma:studio": "prisma studio",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",

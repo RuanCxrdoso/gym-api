@@ -31,5 +31,8 @@ jobs:
       - name: Run tests
         run: pnpm test
 
+      - name: Run prisma generate
+        run: pnpm prisma:generate
+
       - name: Run build
         run: pnpm build
