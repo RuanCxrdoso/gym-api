@@ -28,8 +28,13 @@ jobs:
       - name: Check lint
         run: pnpm lint:check
 
-      # - name: Run tests
-      #   run: pnpm test:run
+      - name: Run tests
+        run: pnpm test
+
+      - name: Run prisma generate
+        run: pnpm prisma:generate
+        env:
+          DATABASE_URL: postgresql://johndoefakedatabase:fakepassword@localhost:5432/mydb
 
       - name: Run build
         run: pnpm build
