@@ -13,7 +13,7 @@ describe('Get user profiles tests', () => {
     getUserProfileUseCase = new GetUserProfileUseCase(inMemoryUsersRepository)
   })
 
-  it('should be able o get their profile', async () => {
+  it('should be able to get their profile', async () => {
     await inMemoryUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@email.com',
