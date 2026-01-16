@@ -20,7 +20,7 @@ export class RegisterUseCase implements RegisterUseCaseResponse {
   async execute({ name, email, password }: RegisterUseCaseRequest) {
     const passwordHash = await bcrypt.hash(password, 5)
 
-    const userEmailUnique = await this.usersRepository.findUniqueEmail(email)
+    const userEmailUnique = await this.usersRepository.findByEmail(email)
 
     if (userEmailUnique) {
       throw new UserAlreadyExistsError()
