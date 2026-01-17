@@ -29,6 +29,6 @@ describe('Get user profiles tests', () => {
   it('shouldnt be able to get profile with wrong id', async () => {
     await expect(() =>
       getUserProfileUseCase.execute({ id: '123456' }),
-    ).rejects.instanceOf(ResourcesNotFoundError)
+    ).rejects.toBeInstanceOf(ResourcesNotFoundError)
   })
 })
