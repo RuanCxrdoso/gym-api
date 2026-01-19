@@ -9,7 +9,7 @@ export class InMemoryCheckInRepository implements CheckInRepository {
 
   async create(data: CheckInUncheckedCreateInput) {
     const checkIn = {
-      id: randomUUID(),
+      id: data.id ?? randomUUID(),
       userId: data.userId,
       gymId: data.gymId,
       createdAt: new Date(),
@@ -17,6 +17,18 @@ export class InMemoryCheckInRepository implements CheckInRepository {
     }
 
     this.checkIns.push(checkIn)
+
+    return checkIn
+  }
+
+  async save(checkIn: CheckIn) {
+    const checkInIndex = this.checkIns.findIndex(
+      (checkInDB) => checkInDB.id === checkIn.id,
+    )
+
+    if (checkInIndex >= 0) {
+      this.checkIns[checkInIndex] = checkIn
+    }
 
     return checkIn
   }
@@ -61,5 +73,13 @@ export class InMemoryCheckInRepository implements CheckInRepository {
     ).length
 
     return checkInsCount
+  }
+
+  async findById(id: string) {
+    const checkIn = this.checkIns.find((checkIn) => checkIn.id === id)
+
+    if (!checkIn) return null
+
+    return checkIn
   }
 }
