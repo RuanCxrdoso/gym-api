@@ -1,4 +1,4 @@
-import type { UsersRepositoryInterface } from '@/repositories/users-repository.js'
+import type { UsersRepository } from '@/repositories/users-repository.js'
 import bcrypt from 'bcryptjs'
 import { UserAlreadyExistsError } from './errors/user-already-exists-error.js'
 import type { User } from 'generated/prisma/client.js'
@@ -14,13 +14,13 @@ interface RegisterUseCaseResponse {
 }
 
 export class RegisterUseCase implements RegisterUseCaseResponse {
-  // Inversão de dependência, a classe RegisterUseCase agora está acoplada à interface UsersRepositoryInterface, então ela pode receber como parâmetro qualquer outra classe que implemente essa mesma interface.
-  constructor(private usersRepository: UsersRepositoryInterface) {}
+  // Inversão de dependência, a classe RegisterUseCase agora está acoplada à interface UsersRepository, então ela pode receber como parâmetro qualquer outra classe que implemente essa mesma interface.
+  constructor(private usersRepository: UsersRepository) {}
 
   async execute({ name, email, password }: RegisterUseCaseRequest) {
     const passwordHash = await bcrypt.hash(password, 5)
 
-    const userEmailUnique = await this.usersRepository.findUniqueEmail(email)
+    const userEmailUnique = await this.usersRepository.findByEmail(email)
 
     if (userEmailUnique) {
       throw new UserAlreadyExistsError()
