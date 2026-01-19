@@ -5,4 +5,5 @@ export interface CheckInRepository {
   create: (data: CheckInUncheckedCreateInput) => Promise<CheckIn>
   findByUserIdOnDate: (userId: string, date: Date) => Promise<CheckIn | null>
   findManyByUserId: (userId: string, page: number) => Promise<CheckIn[]>
+  getCheckInsCountByUserId: (userId: string) => Promise<number>
 }
