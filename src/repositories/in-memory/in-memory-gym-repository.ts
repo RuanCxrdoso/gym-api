@@ -3,6 +3,7 @@ import type { GymsRepository } from '../gyms-repository.js'
 import type { GymCreateInput } from 'generated/prisma/models.js'
 import { Decimal } from '@prisma/client/runtime/index-browser'
 import { randomUUID } from 'node:crypto'
+import { getPaginateIndex } from '@/utils/get-paginate-index.js'
 
 export class InMemoryGymsRepository implements GymsRepository {
   public gyms: Gym[] = []
@@ -28,5 +29,15 @@ export class InMemoryGymsRepository implements GymsRepository {
     if (!gym) return null
 
     return gym
+  }
+
+  async searchByQuery(q: string, page: number) {
+    const { start, end } = getPaginateIndex(page, 20)
+
+    const gyms = this.gyms
+      .filter((gym) => gym.title.toLowerCase().includes(q.toLowerCase()))
+      .slice(start, end)
+
+    return gyms
   }
 }

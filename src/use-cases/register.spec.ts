@@ -5,16 +5,16 @@ import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-user
 import { UserAlreadyExistsError } from './errors/user-already-exists-error.js'
 
 let usersRepository: InMemoryUsersRepository
-let registerUseCase: RegisterUseCase
+let sut: RegisterUseCase
 
 describe('Testing user register module', () => {
   beforeEach(() => {
     usersRepository = new InMemoryUsersRepository()
-    registerUseCase = new RegisterUseCase(usersRepository)
+    sut = new RegisterUseCase(usersRepository)
   })
 
   it('should hash user password', async () => {
-    const { user } = await registerUseCase.execute({
+    const { user } = await sut.execute({
       name: 'John Doe',
       email: 'johndoe@email.com',
       password: '123456',
@@ -31,14 +31,14 @@ describe('Testing user register module', () => {
   it('shouldnt be able to register when the email already in use', async () => {
     const email = 'johndoe@email.com'
 
-    await registerUseCase.execute({
+    await sut.execute({
       name: 'John Doe',
       email,
       password: '123456',
     })
 
     await expect(() =>
-      registerUseCase.execute({
+      sut.execute({
         name: 'John Doe',
         email,
         password: '123456',
@@ -53,7 +53,7 @@ describe('Testing user register module', () => {
       password: '123456',
     }
 
-    const { user: userCreateResponse } = await registerUseCase.execute(user)
+    const { user: userCreateResponse } = await sut.execute(user)
 
     expect(userCreateResponse.id).toBeTypeOf('string')
   })

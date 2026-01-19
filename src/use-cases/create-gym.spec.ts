@@ -3,12 +3,12 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { CreateGymUseCase } from './create-gym.js'
 
 let gymRepository: InMemoryGymsRepository
-let createGymUseCase: CreateGymUseCase
+let sut: CreateGymUseCase
 
 describe('Create gym tests', () => {
   beforeEach(() => {
     gymRepository = new InMemoryGymsRepository()
-    createGymUseCase = new CreateGymUseCase(gymRepository)
+    sut = new CreateGymUseCase(gymRepository)
   })
 
   it('should be able to create a gym', async () => {
@@ -20,7 +20,7 @@ describe('Create gym tests', () => {
       long: -38.3902983,
     }
 
-    const { gym: gymResponse } = await createGymUseCase.execute(gym)
+    const { gym: gymResponse } = await sut.execute(gym)
 
     expect(gymResponse.id).toBeTypeOf('string')
   })

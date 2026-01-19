@@ -3,12 +3,12 @@ import { GetUserCheckInsCountUseCase } from './get-user-check-ins-count.js'
 import { InMemoryCheckInRepository } from '@/repositories/in-memory/in-memory-check-in-repository.js'
 
 let checkInsRepository: InMemoryCheckInRepository
-let getUserCheckInsCount: GetUserCheckInsCountUseCase
+let sut: GetUserCheckInsCountUseCase
 
 describe('User check-ins count test', () => {
   beforeEach(() => {
     checkInsRepository = new InMemoryCheckInRepository()
-    getUserCheckInsCount = new GetUserCheckInsCountUseCase(checkInsRepository)
+    sut = new GetUserCheckInsCountUseCase(checkInsRepository)
   })
 
   it('should be able to get check-ins count', async () => {
@@ -27,7 +27,7 @@ describe('User check-ins count test', () => {
       gymId: 'gym-1',
     })
 
-    const { checkInsCount } = await getUserCheckInsCount.execute({
+    const { checkInsCount } = await sut.execute({
       userId: 'user-1',
     })
 
