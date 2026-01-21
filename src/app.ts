@@ -1,9 +1,15 @@
 import fastify from 'fastify'
+import 'dotenv/config'
 import { ZodError, treeifyError } from 'zod'
 import { env } from './env/index.js'
-import { appRoutes } from './http/routes/auth-routes.js'
+import fastifyJwt from '@fastify/jwt'
+import { appRoutes } from './http/routes/app-routes.js'
 
 export const app = fastify()
+
+app.register(fastifyJwt, {
+  secret: env.SECRET_JWT,
+})
 
 app.register(appRoutes)
 
