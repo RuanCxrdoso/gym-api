@@ -12,7 +12,7 @@ export async function fetchNearbyGyms(req: FastifyRequest, res: FastifyReply) {
     }),
   })
 
-  const { userLat, userLong } = fetchNearbyGymsSchema.parse(req.body)
+  const { userLat, userLong } = fetchNearbyGymsSchema.parse(req.query)
 
   const fetchNearbyGymsUseCase = MakeFetchNearbyGymsUseCase.getInstance()
 
