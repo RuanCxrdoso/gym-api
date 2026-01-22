@@ -27,7 +27,7 @@ export default <Environment>{
 
     process.env.DATABASE_URL = newDatabaseURL
 
-    execSync('pnpm dlx prisma db push')
+    execSync('pnpm dlx prisma migrate deploy')
 
     return {
       async teardown() {

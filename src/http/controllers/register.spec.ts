@@ -12,7 +12,6 @@ describe('Register Controller (e2e)', () => {
   })
 
   it('should be able to register', async () => {
-    console.log('URL no Teste:', process.env.DATABASE_URL)
     const response = await request(app.server).post('/users').send({
       name: 'John Doe',
       email: 'johndoe@email.com',
