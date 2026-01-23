@@ -11,16 +11,16 @@ export async function checkIn(req: FastifyRequest, res: FastifyReply) {
   })
 
   const checkInSchema = z.object({
-    userLat: z.number().refine((value) => {
+    userLat: z.coerce.number().refine((value) => {
       return Math.abs(value) <= 90
     }),
-    userLong: z.number().refine((value) => {
+    userLong: z.coerce.number().refine((value) => {
       return Math.abs(value) <= 180
     }),
   })
 
   const { gymId } = checkInParamsSchema.parse(req.params)
-  const { userLat, userLong } = checkInSchema.parse(req.body)
+  const { userLat, userLong } = checkInSchema.parse(req.query)
 
   const checkInUseCase = MakeCheckInUseCase.getInstance()
 

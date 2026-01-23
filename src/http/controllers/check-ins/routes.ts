@@ -10,6 +10,6 @@ export async function checkInRoutes(app: FastifyInstance) {
 
   app.get('/history', checkInsHistory)
   app.get('/metrics', userCheckInsCount)
-  app.post('/gyms/:gymId/check-ins', checkIn)
+  app.post('/gyms/:gymId', checkIn)
   app.patch('/:checkInId/validate', validate)
 }
