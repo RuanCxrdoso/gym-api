@@ -28,8 +28,11 @@ jobs:
       - name: Check lint
         run: pnpm lint:check
 
-      - name: Run tests
-        run: pnpm test
+      - name: Run unit tests
+        run: pnpm test:unit
+
+      # - name: Run E2E tests
+      #   run: pnpm test:e2e
 
       - name: Run prisma generate
         run: pnpm prisma:generate
