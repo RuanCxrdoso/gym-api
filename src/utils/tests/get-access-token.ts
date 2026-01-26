@@ -14,6 +14,7 @@ export async function getAccessToken() {
   })
 
   const { access_token } = loginResponse.body
+  const cookies = loginResponse.get('Set-Cookie') ?? ['']
 
-  return { access_token }
+  return { access_token, cookies }
 }
