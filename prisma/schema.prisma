@@ -7,6 +7,11 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Role {
+  ADMIN
+  MEMBER
+}
+
 // Models são as tabelas do db, por padrão é digitado em PascalCase e no singular, usamos o @@(map) para redefinir esse nome.
 model User {
   id           String    @id @default(uuid())
@@ -15,6 +20,7 @@ model User {
   checkIns     CheckIn[]
   passwordHash String    @map("password_hash")
   createdAt    DateTime  @default(now()) @map("created_at")
+  role         Role      @default(MEMBER)
 
   @@map("users")
 }
