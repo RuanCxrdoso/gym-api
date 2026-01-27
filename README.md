@@ -21,34 +21,33 @@ GymPass style app.
 - [✅] O usuário não pode fazer 2 check-ins no mesmo dia;
 - [✅] O usuário não pode fazer check-in se não estiver perto (100m) da academia;
 - [✅] O check-in só pode ser validado até 20 minutos após ser criado;
-- [ ] O check-in só pode ser validado por administradores;
-- [ ] A academia só pode ser cadastrada por administradores;
+- [✅] O check-in só pode ser validado por administradores;
+- [✅] A academia só pode ser cadastrada por administradores;
 
 ## RNFs (Requisitos não-funcionais)
 
 - [✅] A senha do usuário precisa estar criptografada;
 - [✅] Os dados da aplicação precisam estar persistidos em um banco PostgreSQL;
 - [✅] Todas listas de dados precisam estar paginadas com 20 itens por página;
-- [ ] O usuário deve ser identificado por um JWT (JSON Web Token);
+- [✅] O usuário deve ser identificado por um JWT (JSON Web Token);
 
 ## Permissões de Acesso (RBAC)
 
 A seguir, a matriz de permissões definindo quais ações cada nível de cargo pode realizar dentro da plataforma, baseada nas regras de negócio definidas.
 
-| Funcionalidade / Ação                              | Master | Admin | User |
-| :------------------------------------------------- | :----: | :---: | :--: |
-| **Autenticação e Perfil**                          |        |       |      |
-| Auto-cadastro na plataforma                        |   ❌   |  ❌   |  ✅  |
-| Realizar login                                     |   ✅   |  ✅   |  ✅  |
-| Visualizar o próprio perfil                        |   ✅   |  ✅   |  ✅  |
-| **Funcionalidades do Usuário**                     |        |       |      |
-| Buscar academias (próximas ou por nome)            |   ✅   |  ✅   |  ✅  |
-| Realizar check-in em uma academia                  |   ✅   |  ✅   |  ✅  |
-| Visualizar próprio histórico/contador de check-ins |   ✅   |  ✅   |  ✅  |
-| **Funcionalidades Administrativas**                |        |       |      |
-| Validar check-in de outros usuários                |   ✅   |  ✅   |  ❌  |
-| Cadastrar uma nova academia                        |   ✅   |  ✅   |  ❌  |
+| Funcionalidade / Ação                              | ADMIN | MEMBER |
+| :------------------------------------------------- | :---: | :----: |
+| **Autenticação e Perfil**                          |       |        |
+| Realizar login                                     |  ✅   |   ✅   |
+| Visualizar o próprio perfil                        |  ✅   |   ✅   |
+| **Funcionalidades do Usuário**                     |       |        |
+| Buscar academias (próximas ou por nome)            |  ✅   |   ✅   |
+| Realizar check-in em uma academia                  |  ✅   |   ✅   |
+| Visualizar próprio histórico/contador de check-ins |  ✅   |   ✅   |
+| **Funcionalidades Administrativas**                |       |        |
+| Validar check-in de outros usuários                |  ✅   |   🚫   |
+| Cadastrar uma nova academia                        |  ✅   |   🚫   |
 
 > **Legenda:**
 > ✅ = Permitido
-> ❌ = Não permitido
+> 🚫 = Não permitido
