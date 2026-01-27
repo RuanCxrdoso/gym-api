@@ -8,14 +8,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    postgres:
-      image: bitnami/postgresql:latest
-      ports:
-        - 5432:5432
-      environment:
-        POSTGRESQL_USERNAME: docker
-        POSTGRESQL_PASSWORD: docker
-        POSTGRESQL_DATABASE: 03-api-solid
+    service:
+      postgres:
+        image: bitnami/postgresql:latest
+        ports:
+          - 5432:5432
+        environment:
+          POSTGRESQL_USERNAME: docker
+          POSTGRESQL_PASSWORD: docker
+          POSTGRESQL_DATABASE: 03-api-solid
 
     steps:
       - name: Checkout code
