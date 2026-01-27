@@ -8,6 +8,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: bitnami/postgresql:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRESQL_USERNAME: docker
+          POSTGRESQL_PASSWORD: docker
+          POSTGRESQL_DATABASE: 03-api-solid
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -33,11 +43,14 @@ jobs:
 
       # - name: Run E2E tests
       #   run: pnpm test:e2e
+      #   env:
+      #     SECRET_JWT: my-jwt-secret
+      #     DATABASE_URL: postgresql://docker:docker@localhost:5432/03-api-solid?schema=public
 
       - name: Run prisma generate
         run: pnpm prisma:generate
         env:
-          DATABASE_URL: postgresql://johndoefakedatabase:fakepassword@localhost:5432/mydb
+          DATABASE_URL: postgresql://docker:docker@localhost:5432/03-api-solid?schema=public
 
       - name: Run build
         run: pnpm build

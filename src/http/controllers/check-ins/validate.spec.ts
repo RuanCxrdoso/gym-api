@@ -14,7 +14,7 @@ describe('Check-in metrics controller E2E tests', () => {
   })
 
   it('should be able to get check-ins history', async () => {
-    const { access_token: token } = await getAccessToken()
+    const { access_token: token } = await getAccessToken(app, true)
 
     const gym = await MakeGym.create()
 
