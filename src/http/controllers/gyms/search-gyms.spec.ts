@@ -13,7 +13,7 @@ describe('Search gyms E2E tests', () => {
   })
 
   it('should be able to search gyms', async () => {
-    const { access_token: token } = await getAccessToken()
+    const { access_token: token } = await getAccessToken(app, true)
 
     await request(app.server)
       .post('/gyms')

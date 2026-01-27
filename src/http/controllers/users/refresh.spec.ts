@@ -13,7 +13,7 @@ describe('Refresh token tests', () => {
   })
 
   it('should be able to refresh your token', async () => {
-    const { cookies } = await getAccessToken()
+    const { cookies } = await getAccessToken(app)
 
     const response = await supertest(app.server)
       .patch('/token/refresh')

@@ -1,15 +1,26 @@
-import { app } from '@/app.js'
+import { hash } from 'bcryptjs'
+import type { FastifyInstance } from 'fastify'
+import { prisma } from 'lib/prisma.js'
 import request from 'supertest'
 
-export async function getAccessToken() {
-  await request(app.server).post('/users').send({
-    name: 'Ciclano',
-    email: 'ciclano@email.com',
-    password: '123456',
+export async function getAccessToken(app: FastifyInstance, isAdmin = false) {
+  // await request(app.server).post('/users').send({
+  //   name: 'Ciclano',
+  //   email: 'ciclano@email.com',
+  //   password: '123456',
+  // })
+
+  const user = await prisma.user.create({
+    data: {
+      name: 'Coro de rato do teste E2E',
+      email: 'coroderatodoteste2e@gmail.com',
+      passwordHash: await hash('123456', 5),
+      role: isAdmin ? 'ADMIN' : 'MEMBER',
+    },
   })
 
   const loginResponse = await request(app.server).post('/sessions').send({
-    email: 'ciclano@email.com',
+    email: user.email,
     password: '123456',
   })
 

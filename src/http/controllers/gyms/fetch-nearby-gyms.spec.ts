@@ -13,7 +13,7 @@ describe('Fetch nearby gyms test', () => {
   })
 
   it('should be able to fetch nearby gyms', async () => {
-    const { access_token: token } = await getAccessToken()
+    const { access_token: token } = await getAccessToken(app, true)
 
     await request(app.server)
       .post('/gyms')

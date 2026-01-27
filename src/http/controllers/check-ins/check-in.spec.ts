@@ -14,7 +14,7 @@ describe('Check-in controller E2E tests', () => {
   })
 
   it('should be able to create a check-in', async () => {
-    const { access_token: token } = await getAccessToken()
+    const { access_token: token } = await getAccessToken(app)
 
     const gym = await MakeGym.create()
 
